@@ -3,7 +3,7 @@
 
 int main(int argc, char const *argv[]) {
     while (true) {
-        printHome();
+        printHome(0);
     }
 
     return 0;

@@ -1,20 +1,22 @@
 #include "ScreenHandler.h"
 #include <iostream>
+#include <windows.h>
+#include <conio.h>
 
 void setDefaultColor() {
-    setConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 }
 void setFrameColor() {
-    SaetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 100);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 100);
 }
 void setTitleColor() {
-    setConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 118);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 118);
 }
 void setChosenIndexColor() {
-    setConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 236);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 236);
 }
 void setUnchosenIndexColor() {
-    setConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 73);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 73);
 }
 
 void printChoiceSymbol() {
@@ -53,9 +55,7 @@ void printTitle() {
     std::cout << "ww\n";
 }
 
-void printMenu() {
-    int cursor{0};
-
+void printMenu(int cursor) {
     for (int index = 0; index < NUM_MENU; index++) {
         setFrameColor();
         std::cout << "ww";
@@ -83,6 +83,7 @@ void printMenu() {
         printf("ww\n");
     }
 
+    // the bottom of the frame
 	printf("ww");
     setDefaultColor();
     printf("                             ");
@@ -95,11 +96,61 @@ void printMenu() {
     printf("ww\n");
 	printf("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\n");
    	printf("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww\n");
-   	setConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);  // What is this? lol
+   	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);  // What is this? lol
 }
 
-void printHome() {
+void printHome(int cursor) {
     system("cls");
     printTitle();
-    printMenu();
+    printMenu(cursor);
+}
+
+void cursorController() {
+    int enter{0};
+    int cursor{0};
+    while(1){
+        if(kbhit() != 0) {
+            enter = getch();
+            // Cheating code for the developers
+            // if(enter == 49)
+            //     stage1();
+            // if(enter == 50)
+            //     stage2();
+            // if(enter == 51)
+            //     stage3();
+            // if(enter == 52)
+            //     stage4();
+            // if(enter == 53)
+            //     stage5();
+            // if(enter == 54)
+            //     stage6();
+            if(enter == 224) {
+				enter = getch();
+                // up
+				if(enter == 72) {
+                    if(cursor != 0) {
+                	    cursor--;
+                    	printHome(cursor);
+                	}
+                }
+                // down
+				if(enter == 80) {
+                    if(cursor < (NUM_MENU - 1)) {
+            	        cursor++;
+                	    printHome(cursor);
+            		}
+				}
+            }
+            if(enter == 13) {
+                // mark[0][0] = 1;		// press enter
+                if(cursor == 0) break;
+                if(cursor == 1) {
+                	// rank();
+                	printHome(cursor);
+                }
+                if(cursor == 2)
+                	exit(1);
+            }
+        }
+    }
 }

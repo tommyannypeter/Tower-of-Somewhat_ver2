@@ -17,7 +17,9 @@ void setUnchosenIndexColor();
 void printChoiceSymbol();
 
 void printTitle();
-void printMenu();
-void printHome();
+void printMenu(int cursor);
+void printHome(int cursor);
+
+void cursorController();
 
 #endif
