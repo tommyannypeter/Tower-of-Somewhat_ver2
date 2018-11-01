@@ -9,7 +9,7 @@ int rank() {
     char topname[10][20];
     FILE* rankr;
 
-    rankr = fopen("rank.txt","r");
+    rankr = fopen("data/rank.txt","r");
     for (i = 0; i < 10; i++) {
         fscanf(rankr,"%d", &best[i]);
     }
@@ -32,7 +32,7 @@ int rank() {
 void reset() {
     FILE* rankw;
     int i;
-    rankw = fopen("rank.txt","w");
+    rankw = fopen("data/rank.txt","w");
     for (i = 0; i < 10; i++) {
         fprintf(rankw,"0 ");
     }
