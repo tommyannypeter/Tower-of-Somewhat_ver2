@@ -1,4 +1,5 @@
 #include "ScreenHandler.h"
+#include "Rank.h"
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
@@ -147,7 +148,7 @@ void cursorController() {
                 // mark[0][0] = 1;		// press enter
                 if(cursor == 0) break;
                 if(cursor == 1) {
-                	// rank();
+                	rank();
                 	printHome(cursor);
                 }
                 if(cursor == 2)
