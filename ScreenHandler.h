@@ -3,7 +3,7 @@
 
 enum Menu {
     START,
-    SCORE,
+    RANK,
     EXIT,
     NUM_MENU
 };

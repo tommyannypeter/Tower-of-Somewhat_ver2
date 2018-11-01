@@ -3,7 +3,7 @@
 
 int main(int argc, char const *argv[]) {
     while (true) {
-        printHome(0);
+        cursorController();
     }
 
     return 0;

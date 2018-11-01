@@ -21,7 +21,7 @@ void setUnchosenIndexColor() {
 
 void printChoiceSymbol() {
     setDefaultColor();
-    std::cout << "\b\b●";
+    std::cout << "[[";
     setChosenIndexColor();
 }
 
@@ -36,11 +36,11 @@ void printTitle() {
     std::cout << "ww\n";
     std::cout << "ww";
     setDefaultColor();
-    std::cout << "           ";
+    std::cout << "      ";
     setTitleColor();
-    std::cout << "什麼之塔" << '\n';
+    std::cout << "Tower of Somewhat";
     setDefaultColor();
-    std::cout << "          ";
+    std::cout << "      ";
     setFrameColor();
     std::cout << "ww\n";
     std::cout << "ww";
@@ -60,25 +60,26 @@ void printMenu(int cursor) {
         setFrameColor();
         std::cout << "ww";
         setDefaultColor();
-        std::cout << "           ";
-        setUnchosenIndexColor();
+        std::cout << "         ";
         if (cursor == index) printChoiceSymbol();
+        else std::cout << "  ";
+        setUnchosenIndexColor();
         switch (index) {
             case START:
-                std::cout << "開始遊戲";
+                std::cout << "Start";
                 break;
-            case SCORE:
-                std::cout << "最佳排行";
+            case RANK:
+                std::cout << "Rank ";
                 break;
             case EXIT:
-                std::cout << "離開遊戲";
+                std::cout << "Exit ";
                 break;
             default:
                 std::cout << "Error in printMenu() of ScreenHandler.cpp";
                 break;
         }
         setDefaultColor();
-        std::cout << "          ";
+        std::cout << "             ";
         setFrameColor();
         printf("ww\n");
     }
@@ -108,6 +109,7 @@ void printHome(int cursor) {
 void cursorController() {
     int enter{0};
     int cursor{0};
+    printHome(cursor);
     while(1){
         if(kbhit() != 0) {
             enter = getch();
